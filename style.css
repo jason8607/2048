@@ -1,0 +1,214 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --background-color: #faf8ef;
+    --grid-color: #bbada0;
+    --empty-cell-color: rgba(238, 228, 218, 0.35);
+    --text-color: #776e65;
+    --light-text: #f9f6f2;
+    --tile-color-2: #eee4da;
+    --tile-color-4: #ede0c8;
+    --tile-color-8: #f2b179;
+    --tile-color-16: #f59563;
+    --tile-color-32: #f67c5f;
+    --tile-color-64: #f65e3b;
+    --tile-color-128: #edcf72;
+    --tile-color-256: #edcc61;
+    --tile-color-512: #edc850;
+    --tile-color-1024: #edc53f;
+    --tile-color-2048: #edc22e;
+}
+
+body {
+    font-family: "Clear Sans", "Helvetica Neue", Arial, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    width: 100%;
+    max-width: 500px;
+    padding: 15px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.header h1 {
+    font-size: 4em;
+    font-weight: bold;
+    margin: 0;
+}
+
+.scores-container {
+    display: flex;
+    gap: 10px;
+}
+
+.score-box {
+    background: var(--grid-color);
+    padding: 15px 25px;
+    border-radius: 6px;
+    text-align: center;
+    color: var(--light-text);
+}
+
+.score-label {
+    display: block;
+    font-size: 13px;
+    text-transform: uppercase;
+}
+
+.score-box span:last-child {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.game-container {
+    background: var(--grid-color);
+    padding: 15px;
+    border-radius: 8px;
+    position: relative;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 15px;
+    position: relative;
+    padding: 15px;
+    cursor: default;
+    touch-action: none;
+    background: var(--grid-color);
+    border-radius: 6px;
+}
+
+.tile {
+    width: 100%;
+    background: var(--empty-cell-color);
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 55px;
+    font-weight: bold;
+    position: relative;
+    transition: 100ms ease-in-out;
+    text-align: center;
+}
+
+.tile:before {
+    content: '';
+    padding-bottom: 100%;
+    display: block;
+}
+
+.tile span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: 100ms ease-in-out;
+}
+
+.tile-2 { background-color: var(--tile-color-2); }
+.tile-4 { background-color: var(--tile-color-4); }
+.tile-8 { 
+    background-color: var(--tile-color-8);
+    color: var(--light-text);
+}
+.tile-16 { 
+    background-color: var(--tile-color-16);
+    color: var(--light-text);
+}
+.tile-32 { 
+    background-color: var(--tile-color-32);
+    color: var(--light-text);
+}
+.tile-64 { 
+    background-color: var(--tile-color-64);
+    color: var(--light-text);
+}
+.tile-128 { 
+    background-color: var(--tile-color-128);
+    color: var(--light-text);
+    font-size: 45px;
+}
+.tile-256 { 
+    background-color: var(--tile-color-256);
+    color: var(--light-text);
+    font-size: 45px;
+}
+.tile-512 { 
+    background-color: var(--tile-color-512);
+    color: var(--light-text);
+    font-size: 45px;
+}
+.tile-1024 { 
+    background-color: var(--tile-color-1024);
+    color: var(--light-text);
+    font-size: 35px;
+}
+.tile-2048 { 
+    background-color: var(--tile-color-2048);
+    color: var(--light-text);
+    font-size: 35px;
+}
+
+.instructions {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.instructions p {
+    margin-bottom: 15px;
+}
+
+.restart-button {
+    background: var(--grid-color);
+    border: none;
+    color: var(--light-text);
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.restart-button:hover {
+    background-color: #8f7a66;
+}
+
+@media (max-width: 520px) {
+    .container {
+        padding: 10px;
+    }
+
+    .header h1 {
+        font-size: 3em;
+    }
+
+    .tile {
+        font-size: 35px;
+    }
+
+    .tile-128, .tile-256, .tile-512 {
+        font-size: 30px;
+    }
+
+    .tile-1024, .tile-2048 {
+        font-size: 25px;
+    }
+}
