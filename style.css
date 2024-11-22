@@ -201,14 +201,6 @@ body {
         font-size: 3em;
     }
 
-    .grid-container {
-        width: 100vw;
-        max-width: 400px;
-        height: 100vw;
-        max-height: 400px;
-        margin: 0 auto;
-    }
-
     .scores-container {
         gap: 10px;
     }
