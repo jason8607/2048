@@ -203,6 +203,58 @@ const handleInput = (event) => {
     }
 };
 
+// 觸控事件相關變數
+let touchStartX = 0;
+let touchStartY = 0;
+let touchEndX = 0;
+let touchEndY = 0;
+
+// 處理觸控開始事件
+const handleTouchStart = (event) => {
+    touchStartX = event.touches[0].clientX;
+    touchStartY = event.touches[0].clientY;
+};
+
+// 處理觸控結束事件
+const handleTouchEnd = (event) => {
+    touchEndX = event.changedTouches[0].clientX;
+    touchEndY = event.changedTouches[0].clientY;
+
+    const deltaX = touchEndX - touchStartX;
+    const deltaY = touchEndY - touchStartY;
+    const minSwipeDistance = 30; // 最小滑動距離
+
+    if (Math.abs(deltaX) > Math.abs(deltaY)) {
+        // 水平滑動
+        if (Math.abs(deltaX) > minSwipeDistance) {
+            if (deltaX > 0) {
+                moveTiles('right');
+            } else {
+                moveTiles('left');
+            }
+        }
+    } else {
+        // 垂直滑動
+        if (Math.abs(deltaY) > minSwipeDistance) {
+            if (deltaY > 0) {
+                moveTiles('down');
+            } else {
+                moveTiles('up');
+            }
+        }
+    }
+};
+
+// 防止滑動時頁面捲動
+const preventDefault = (event) => {
+    event.preventDefault();
+};
+
+// 添加觸控事件監聽器
+gridContainer.addEventListener('touchstart', handleTouchStart, false);
+gridContainer.addEventListener('touchend', handleTouchEnd, false);
+gridContainer.addEventListener('touchmove', preventDefault, { passive: false });
+
 document.addEventListener('keydown', handleInput);
 createGrid();
 generateTile();
